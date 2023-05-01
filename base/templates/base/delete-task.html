@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style/delete.css' %}">
+
+    <div class="wrapper">
+        <div class="container">
+        <h2>Are you sure you want to delete "{{item}}" ?</h2>
+
+        <div class="sub-container">
+            <a href="{% url 'home' %}" class="cancel-button"> Cancel</a>
+
+            <form method="POST" action="">
+            {% csrf_token %}
+            <input type="submit" value="Confirm" class="confirm-button"/>
+        
+        </form>
+        </div>
+    </div>
+    </div>
