@@ -16,6 +16,8 @@ class SignupForm(UserCreationForm):
 
 
 class TaskForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter your task here'}))
+
     class Meta:
         model = Tasks
         fields = ['title', 'completed']

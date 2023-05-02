@@ -11,6 +11,11 @@
       {% csrf_token %}
 
       <label for="chk" aria-hidden="true">Sign up</label>
+
+      {% for message in messages %}
+        <p style="color: red;">{{message}}</p>
+      {% endfor %}
+
       {{form.username}}
       {{form.password1}}
       {{form.password2}}

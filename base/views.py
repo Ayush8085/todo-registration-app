@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -20,7 +21,8 @@ def loginPage(request):
             try:
                 user = User.objects.get(username=username)
             except:
-                return HttpResponse("Invalid Username!!")
+                messages.error(request, "Invalid Username!!")
+                return redirect('home')
 
             user = authenticate(request, username=username, password=password)
 
@@ -28,7 +30,7 @@ def loginPage(request):
                 login(request, user)
                 return redirect('home')
             else:
-                return HttpResponse("Invalid Username or Password!!")
+                messages.success(request, "Invalid Username or Password!!")
 
         elif request.POST.get('submit') == 'Signup':
             form = SignupForm(request.POST)
@@ -39,7 +41,11 @@ def loginPage(request):
                 login(request, user)
                 return redirect('home')
             else:
-                return HttpResponse("Some error while sign up!!")
+                messages.error(request, "Password can’t be too similar to your other personal information.")
+                messages.error(request, "Password must contain at least 8 characters.")
+                messages.error(request, "Password can’t be a commonly used password.")
+                messages.error(request, "Password can’t be entirely numeric.")
+                return redirect('home')
 
 
     context = {'form': form}
