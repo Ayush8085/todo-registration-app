@@ -51,6 +51,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Todo item</th>
+                                        <th scope="col">Created</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -63,6 +64,7 @@
                                         {% else %}
                                         <td>{{task}}</td>
                                         {% endif %}
+                                        <td>{{task.created|timesince}} ago</td>
                                         <td>
                                             <a href="{% url 'delete' task.id %}" class="btn btn-danger">Delete</a>
                                             <a href="{% url 'edit' task.id %}" class="btn btn-success ms-1">Edit</a>
