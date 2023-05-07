@@ -20,6 +20,12 @@
       {{form.password1}}
       {{form.password2}}
 
+      {% for field in form %}
+      {% for error in field.errors %}
+        <p style="color: cornflowerblue;">{{error}}</p>
+      {% endfor %}
+      {% endfor %}
+
       <button type="submit" name="submit" value="Signup">Sign up</button>
     </form>
   </div>
